@@ -1,0 +1,208 @@
+.detail-container {
+  padding: 40px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  width: 100%;
+}
+
+.detail-card {
+  width: 100%;
+  max-width: 750px;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+  padding: 24px;
+  background: white;
+}
+
+.detail-card-header {
+  padding: 0 0 16px 0 !important;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 24px;
+}
+
+.header-content {
+  width: 100%;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.todo-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1b2f;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+
+  &.completed {
+    text-decoration: line-through;
+    color: #9ca3af;
+  }
+}
+
+.status-chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.completed {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+  &.pending {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+}
+
+.meta-info {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 6px 0 0 0;
+}
+
+.detail-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 !important;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+
+  .badge-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .badge-label {
+    font-weight: 600;
+    color: #4b5563;
+  }
+
+  .due-date-val {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #1a1b2f;
+    font-weight: 500;
+
+    mat-icon {
+      font-size: 16px;
+      height: 16px;
+      width: 16px;
+      color: #667eea;
+    }
+  }
+}
+
+.priority-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.high {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+  &.medium {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+  &.low {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+}
+
+.desc-section {
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1b2f;
+    margin: 0 0 8px 0;
+  }
+
+  .desc-text {
+    font-size: 15px;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-wrap;
+
+    &.empty-desc {
+      color: #9ca3af;
+      font-style: italic;
+    }
+  }
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 16px 0 0 0 !important;
+  border-top: 1px solid #f1f5f9;
+
+  button {
+    height: 40px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+}
+
+.action-buttons-group {
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .detail-actions {
+    flex-direction: column;
+    align-items: stretch;
+
+    .action-buttons-group {
+      flex-direction: column;
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

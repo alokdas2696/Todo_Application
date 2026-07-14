@@ -1,0 +1,126 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="welcome-section">
+      <h1>Hello, {{ userName }}! 👋</h1>
+      <p>Here is your task summary for today.</p>
+    </div>
+    <button mat-flat-button color="primary" routerLink="/todos/create" class="create-btn">
+      <mat-icon>add</mat-icon> Create Todo
+    </button>
+  </header>
+
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!isLoading" class="dashboard-content">
+    <!-- Progress Card -->
+    <mat-card class="progress-card">
+      <mat-card-content>
+        <div class="progress-info">
+          <h2>Task Completion Rate</h2>
+          <span class="percentage">{{ completionPercentage }}%</span>
+        </div>
+        <mat-progress-bar mode="determinate" [value]="completionPercentage"></mat-progress-bar>
+        <p class="progress-desc" *ngIf="stats.total > 0; else noTodosDesc">
+          You have completed {{ stats.completed }} out of {{ stats.total }} tasks. Keep it up!
+        </p>
+        <ng-template #noTodosDesc>
+          <p class="progress-desc">No tasks created yet. Click "Create Todo" to get started!</p>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <!-- Total Todos -->
+      <mat-card class="stat-card total-tasks">
+        <mat-card-header>
+          <div class="stat-icon-wrapper">
+            <mat-icon>assignment</mat-icon>
+          </div>
+          <div class="stat-details">
+            <mat-card-title>{{ stats.total }}</mat-card-title>
+            <mat-card-subtitle>Total Tasks</mat-card-subtitle>
+          </div>
+        </mat-card-header>
+      </mat-card>
+
+      <!-- Completed Todos -->
+      <mat-card class="stat-card completed-tasks">
+        <mat-card-header>
+          <div class="stat-icon-wrapper">
+            <mat-icon>check_circle</mat-icon>
+          </div>
+          <div class="stat-details">
+            <mat-card-title>{{ stats.completed }}</mat-card-title>
+            <mat-card-subtitle>Completed</mat-card-subtitle>
+          </div>
+        </mat-card-header>
+      </mat-card>
+
+      <!-- Pending Todos -->
+      <mat-card class="stat-card pending-tasks">
+        <mat-card-header>
+          <div class="stat-icon-wrapper">
+            <mat-icon>pending_actions</mat-icon>
+          </div>
+          <div class="stat-details">
+            <mat-card-title>{{ stats.pending }}</mat-card-title>
+            <mat-card-subtitle>Pending</mat-card-subtitle>
+          </div>
+        </mat-card-header>
+      </mat-card>
+
+      <!-- High Priority Todos -->
+      <mat-card class="stat-card high-priority">
+        <mat-card-header>
+          <div class="stat-icon-wrapper">
+            <mat-icon>priority_high</mat-icon>
+          </div>
+          <div class="stat-details">
+            <mat-card-title>{{ stats.highPriority }}</mat-card-title>
+            <mat-card-subtitle>High Priority</mat-card-subtitle>
+          </div>
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <!-- Recent Todos Section -->
+    <div class="recent-section">
+      <div class="section-title">
+        <h2>Upcoming Pending Tasks</h2>
+        <button mat-button color="primary" routerLink="/todos">View All</button>
+      </div>
+
+      <div *ngIf="recentTodos.length > 0; else noRecentTodos" class="recent-list">
+        <mat-card *ngFor="let todo of recentTodos" class="recent-todo-card">
+          <mat-card-content class="recent-todo-content">
+            <div class="todo-header-row">
+              <h3 class="todo-title" [routerLink]="['/todos', todo.id]">{{ todo.title }}</h3>
+              <div class="todo-meta">
+                <span class="priority-badge" [ngClass]="todo.priority.toLowerCase()">
+                  {{ todo.priority }}
+                </span>
+                <span class="due-date" *ngIf="todo.dueDate">
+                  <mat-icon>calendar_today</mat-icon> Due: {{ todo.dueDate | date:'mediumDate' }}
+                </span>
+              </div>
+            </div>
+            <p class="todo-desc" *ngIf="todo.description">{{ todo.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <ng-template #noRecentTodos>
+        <mat-card class="empty-card">
+          <mat-card-content>
+            <mat-icon class="empty-icon">check_circle_outline</mat-icon>
+            <h3>All caught up!</h3>
+            <p>You have no pending tasks. Take a break or create a new one!</p>
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
+    </div>
+  </div>
+</div>

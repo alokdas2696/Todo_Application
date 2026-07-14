@@ -1,0 +1,43 @@
+<div class="profile-container">
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-card class="profile-card" *ngIf="!isLoading && user">
+    <mat-card-header class="profile-header">
+      <div class="avatar-circle">
+        {{ initials }}
+      </div>
+      <h1 class="user-name">{{ user.name }}</h1>
+      <p class="user-email">{{ user.email }}</p>
+    </mat-card-header>
+
+    <mat-card-content class="profile-content">
+      <div class="info-list">
+        <div class="info-item">
+          <mat-icon class="info-icon">person</mat-icon>
+          <div class="info-details">
+            <span class="info-label">Full Name</span>
+            <span class="info-value">{{ user.name }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <mat-icon class="info-icon">email</mat-icon>
+          <div class="info-details">
+            <span class="info-label">Email Address</span>
+            <span class="info-value">{{ user.email }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <mat-icon class="info-icon">calendar_today</mat-icon>
+          <div class="info-details">
+            <span class="info-label">Member Since</span>
+            <span class="info-value">{{ user.createdAt | date:'longDate' }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

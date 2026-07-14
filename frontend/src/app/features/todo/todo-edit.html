@@ -1,0 +1,71 @@
+<div class="form-container">
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-card class="form-card" *ngIf="!isLoading">
+    <mat-card-header>
+      <div class="form-header">
+        <mat-icon class="form-icon">edit_note</mat-icon>
+        <h1 class="form-title">Edit Task</h1>
+        <p class="form-subtitle">Modify the details of your task</p>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="todo-form">
+        <!-- Title -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Task Title</mat-label>
+          <input matInput formControlName="title" placeholder="What needs to be done?" autocomplete="off">
+          <mat-error *ngIf="todoForm.get('title')?.hasError('required')">Title is required</mat-error>
+        </mat-form-field>
+
+        <!-- Description -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="4" placeholder="Add some details about this task..."></textarea>
+        </mat-form-field>
+
+        <!-- Grid for Status, Priority, and Due Date -->
+        <div class="form-grid">
+          <!-- Priority -->
+          <mat-form-field appearance="outline">
+            <mat-label>Priority</mat-label>
+            <mat-select formControlName="priority">
+              <mat-option value="Low">Low</mat-option>
+              <mat-option value="Medium">Medium</mat-option>
+              <mat-option value="High">High</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Status -->
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+              <mat-option value="Pending">Pending</mat-option>
+              <mat-option value="Completed">Completed</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Due Date -->
+          <mat-form-field appearance="outline">
+            <mat-label>Due Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dueDate" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="form-actions">
+          <button mat-button type="button" routerLink="/todos">Cancel</button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="todoForm.invalid || isSaving" class="save-btn">
+            <span *ngIf="!isSaving">Update Task</span>
+            <mat-spinner diameter="24" *ngIf="isSaving" class="spinner-center"></mat-spinner>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

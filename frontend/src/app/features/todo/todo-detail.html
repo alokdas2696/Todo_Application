@@ -1,0 +1,74 @@
+<div class="detail-container">
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <mat-card class="detail-card" *ngIf="!isLoading && todo">
+    <mat-card-header class="detail-card-header">
+      <div class="header-content">
+        <div class="title-row">
+          <h1 class="todo-title" [ngClass]="{'completed': todo.status === 'Completed'}">
+            {{ todo.title }}
+          </h1>
+          <span class="status-chip" [ngClass]="todo.status.toLowerCase()">
+            {{ todo.status }}
+          </span>
+        </div>
+        <p class="meta-info">
+          Created on {{ todo.createdAt | date:'medium' }}
+        </p>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content class="detail-card-content">
+      <!-- Priority & Due Date Row -->
+      <div class="badge-row">
+        <div class="badge-item">
+          <span class="badge-label">Priority:</span>
+          <span class="priority-badge" [ngClass]="todo.priority.toLowerCase()">
+            {{ todo.priority }}
+          </span>
+        </div>
+
+        <div class="badge-item" *ngIf="todo.dueDate">
+          <span class="badge-label">Due Date:</span>
+          <span class="due-date-val">
+            <mat-icon>calendar_today</mat-icon> {{ todo.dueDate | date:'fullDate' }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Description Section -->
+      <div class="desc-section">
+        <h3>Description</h3>
+        <p class="desc-text" *ngIf="todo.description; else noDesc">
+          {{ todo.description }}
+        </p>
+        <ng-template #noDesc>
+          <p class="desc-text empty-desc">No description provided for this task.</p>
+        </ng-template>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="detail-actions">
+      <button mat-button type="button" routerLink="/todos">
+        <mat-icon>arrow_back</mat-icon> Back to List
+      </button>
+
+      <div class="action-buttons-group">
+        <button mat-stroked-button color="primary" (click)="toggleStatus()">
+          <mat-icon>{{ todo.status === 'Completed' ? 'restart_alt' : 'check_circle' }}</mat-icon>
+          Mark {{ todo.status === "Completed" ? "Pending" : "Completed" }}
+        </button>
+
+        <button mat-flat-button color="accent" [routerLink]="['/todos/edit', todo.id]">
+          <mat-icon>edit</mat-icon> Edit
+        </button>
+
+        <button mat-flat-button color="warn" (click)="deleteTodo()">
+          <mat-icon>delete</mat-icon> Delete
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  --primary-color: #667eea;
+  --secondary-color: #764ba2;
+
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-primary: #1a1b2f;
+  --text-secondary: #6b7280;
+  --border-color: #e2e8f0;
+
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+// Global Dark Mode Override System
+body.dark-theme {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  // Sidenav backgrounds in dark mode
+  .content-area,
+  .page-content {
+    background-color: var(--bg-color) !important;
+  }
+
+  // Top navigation bar in dark mode
+  .main-toolbar {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border-bottom: 1px solid #334155;
+    box-shadow: none;
+  }
+
+  .user-menu-btn {
+    color: var(--text-primary) !important;
+    &:hover {
+      background-color: #334155 !important;
+    }
+  }
+
+  // Card components in dark mode
+  mat-card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-color);
+  }
+
+  // Text inputs in dark mode
+  .mat-mdc-form-field-input-control {
+    color: var(--text-primary) !important;
+  }
+
+  .mat-mdc-select-value-text {
+    color: var(--text-primary) !important;
+  }
+
+  .mat-mdc-select-arrow {
+    color: var(--text-secondary) !important;
+  }
+
+  .mat-mdc-option {
+    color: var(--text-primary) !important;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+  }
+
+  // Checkboxes in dark mode
+  .mdc-checkbox {
+    --mdc-checkbox-unselected-icon-color: var(--text-secondary);
+  }
+
+  // Due date indicator badges in dark mode
+  .due-date-badge {
+    background: #334155 !important;
+    color: var(--text-primary) !important;
+  }
+
+  // Typography color settings in dark mode
+  .todo-title,
+  .form-title,
+  h2,
+  h3,
+  .brand-name {
+    color: var(--text-primary) !important;
+  }
+
+  .todo-desc,
+  .form-subtitle,
+  p,
+  .due-date,
+  .meta-info,
+  .welcome-section p {
+    color: var(--text-secondary) !important;
+  }
+
+  // Settings details card listings in dark mode
+  .info-item {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    &:hover {
+      background: #334155 !important;
+    }
+  }
+
+  .info-value {
+    color: var(--text-primary) !important;
+  }
+
+  .detail-card-header {
+    border-bottom-color: #334155 !important;
+  }
+
+  .detail-actions {
+    border-top-color: #334155 !important;
+  }
+}
+
+// Global Core Styles
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+// Scrollbars Custom Styles
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
