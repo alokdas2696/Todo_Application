@@ -2,13 +2,14 @@ import { Injectable, inject } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Todo } from "../../shared/models/todo.model";
+import { API_BASE_URL } from "../../api-config";
 
 @Injectable({
   providedIn: "root"
 })
 export class TodoService {
   private http = inject(HttpClient);
-  private apiUrl = "http://localhost:3000/api/todos";
+  private apiUrl = `${API_BASE_URL}/api/todos`;
 
   getTodos(
     filters: {
